@@ -223,10 +223,13 @@ local function SHA384(Message: buffer): (string, buffer)
 	local H5Hi, H5Lo = buffer.readu32(DIGEST, 32), buffer.readu32(DIGEST, 36)
 	local H6Hi, H6Lo = buffer.readu32(DIGEST, 40), buffer.readu32(DIGEST, 44)
 
+	local Result = buffer.create(48)
+	buffer.copy(Result, 0, DIGEST)
+
 	return string.format(
 		"%08x%08x%08x%08x%08x%08x%08x%08x%08x%08x%08x%08x",
 		H1Hi, H1Lo, H2Hi, H2Lo, H3Hi, H3Lo, H4Hi, H4Lo, H5Hi, H5Lo, H6Hi, H6Lo
-	), DIGEST
+	), Result
 end
 
 return SHA384

@@ -2,6 +2,7 @@
 
 local Algorithms = table.freeze({
 	HMAC = require("@self/HMAC"),
+	HKDF = require("@self/HKDF"),
 	KMAC = require("@self/KMAC"),
 	MD5 = require("@self/MD5"),
 	SHA1 = require("@self/SHA1"),

@@ -229,11 +229,14 @@ local function SHA512(Message: buffer): (string, buffer)
 	local H7Hi, H7Lo = buffer.readu32(DIGEST, 48), buffer.readu32(DIGEST, 52)
 	local H8Hi, H8Lo = buffer.readu32(DIGEST, 56), buffer.readu32(DIGEST, 60)
 
+	local Result = buffer.create(64)
+	buffer.copy(Result, 0, DIGEST)
+
 	return string.format(
 		"%08x%08x%08x%08x%08x%08x%08x%08x%08x%08x%08x%08x%08x%08x%08x%08x",
 		H1Hi, H1Lo, H2Hi, H2Lo, H3Hi, H3Lo, H4Hi, H4Lo,
 		H5Hi, H5Lo, H6Hi, H6Lo, H7Hi, H7Lo, H8Hi, H8Lo
-	), DIGEST
+	), Result
 end
 
 return SHA512
